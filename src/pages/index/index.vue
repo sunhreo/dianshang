@@ -1,11 +1,6 @@
 <template>
   <view class="container">
-    <view class="search">
-      <view class="input-box">
-        <input type="text" />
-      </view>
-      <view class="content"></view>
-    </view>
+    <search/>
     <swiper indicator-dots>
       <swiper-item>
         <image src="/static/uploads/banner1.png">
@@ -54,6 +49,29 @@
           </navigator>
         </view>
       </view>
+   
+      <view class="floor">
+        <view class="title">
+          <image src="/static/uploads/pic_floor01_title.png">
+        </view>
+        <view class="items">
+          <navigator url="">
+            <image src="/static/uploads/pic_floor01_1@2x.png">
+          </navigator>
+          <navigator url="">
+            <image src="/static/uploads/pic_floor01_2@2x.png">
+          </navigator>
+          <navigator url="">
+            <image src="/static/uploads/pic_floor01_3@2x.png">
+          </navigator>
+          <navigator url="">
+            <image src="/static/uploads/pic_floor01_4@2x.png">
+          </navigator>
+          <navigator url="">
+            <image src="/static/uploads/pic_floor01_5@2x.png">
+          </navigator>
+      </view>
+       </view>
     </view>
      <view class="floors">
       <view class="floor">
@@ -78,30 +96,25 @@
           </navigator>
         </view>
       </view>
-    </view>
-  </view>
+      </view>
+       </view>
 </template>
 <script>
+import search from '@/components/search'
 export default {
   data() {
     return {
       title: "NIHAO"
     };
   },
+  components:{
+    search
+  },
   onload() {},
   methods: {}
 };
 </script>
 <style lang="less">
-.search {
-  .input-box {
-    background-color: #ff2d4a;
-    padding: 20rpx 16rpx;
-    input {
-      background-color: #fff;
-    }
-  }
-}
 swiper {
   height: 340rpx;
   image {
@@ -113,6 +126,7 @@ swiper {
   display: flex;
   justify-content: space-between;
   padding: 0 30rpx;
+  height: 180rpx;
   align-items: center;
   navigator {
     width: 128rpx;
@@ -154,4 +168,16 @@ swiper {
     }
   }
 }
+&:first-child {
+		.items {
+			navigator {
+				width: 232rpx;
+        height: 188rpx;
+        &:first-child {
+        	width: 232rpx;
+          height: 386rpx;
+        }
+			}
+		}
+	}
 </style>
