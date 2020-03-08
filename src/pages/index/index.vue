@@ -6,6 +6,17 @@
       </view>
       <view class="content"></view>
     </view>
+    <swiper>
+      <swiper-item>
+        <image src="static/uploads/banner1.png"></image>
+      </swiper-item>
+      <swiper-item>
+        <image src="static/uploads/banner2.png"></image>
+      </swiper-item>
+      <swiper-item>
+        <image src="static/uploads/banner3.png"></image>
+      </swiper-item>
+    </swiper>
   </view>
 </template>
 <script>
@@ -13,6 +24,7 @@ export default {
   data() {
     return {
       title: 'NIHAO'
+    }
     },
       onload(){
     },
@@ -20,7 +32,22 @@ export default {
 
     }
   }
-}
 </script>
-<style>
+<style lang="less">
+.search{
+  .input-box{
+    background-color: #FF2D4A;
+    padding: 20rpx 16rpx;
+    input{
+      background-color: #fff;
+    }
+  }
+}
+swiper{
+  height: 340rpx;
+  image{
+    width: 750rpx;
+    height: 340rpx;
+  }
+}
 </style>
