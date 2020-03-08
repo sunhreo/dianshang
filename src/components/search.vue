@@ -1,9 +1,12 @@
 <template>
-<view class="search" :class="{focused: isFocused}">
+<view class="search" :class='{focused: isFocused}'>
       <view class="input-box">
         <input type="text" @focus="goSearch" />
+        <text class="cancel" @click="handleCancel">取消</text>
       </view>
-      <view class="content"></view>
+      <view class="content">
+
+      </view>
 </template>
 <script>
 export default {
@@ -17,6 +20,9 @@ export default {
             console.log("hello")
             // 当输入获取焦点是,在父元素添加一个类名
             this.isFocused=true
+        },
+        handleCancel(){
+            this.isFocused=false
         }
     }
 }
@@ -29,10 +35,16 @@ export default {
             input{
                 background-color: #fff;
             }
+            .cancel{
+                display: none;
+            }
         }
-        &focused{
+        &.focused{
             .input-box{
-        background-color: #eee;
+            background-color: #eee;
+    }
+    .cancel{
+        display: block;
     }
         }
     }
