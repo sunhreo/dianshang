@@ -2,7 +2,7 @@
   <view class="container" :style="{height:pageHeight,overflow:'hidden'}">
     <search  @window-height='handleWindowHeight'/>
     <swiper indicator-dots>
-      <swiper-item :key="item.goos_id" v-for="item in swiperData">
+      <swiper-item :key="item.goods_id" v-for="item in swiperData">
         <image :src="item.image_src"/>
       </swiper-item>
     </swiper>
@@ -84,12 +84,12 @@ export default {
   methods: {
     handleWindowHeight(data){
       this.pageHeight=data.height +'px';
-      console.log('handleWindowHeight')
+      cons0ole.log('handleWindowHeight')
     },
     querySwiperData(){
       wx.request({
         url:'http://api-ugo-dev.iteima.net/api/public/v1/home/swiperdata',
-        success(res){
+        success:(res)=>{
           this.swiperData=res.data.message
         }
       })
