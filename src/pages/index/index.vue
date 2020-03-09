@@ -1,30 +1,16 @@
 <template>
-  <view class="container">
-    <search/>
+  <view class="container" :style="{height:pageHeight,overflow:'hidden'}">
+    <search  @window-height='handleWindowHeight'/>
     <swiper indicator-dots>
-      <swiper-item>
-        <image src="/static/uploads/banner1.png">
-      </swiper-item>
-      <swiper-item>
-        <image src="/static/uploads/banner2.png">
-      </swiper-item>
-      <swiper-item>
-        <image src="/static/uploads/banner3.png">
+      <swiper-item :key="item.goos_id" v-for="item in swiperData">
+        <image :src="item.image_src"/>
       </swiper-item>
     </swiper>
     <view class="navs">
-      <navigator url="true">
+      <navigator url="">
         <image src="/static/uploads/icon_index_nav_1@2x.png"></image>
       </navigator>
-      <navigator url="true">
-        <image src="/static/uploads/icon_index_nav_2@2x.png">
-      </navigator>
-      <navigator url="">
-        <image src="/static/uploads/icon_index_nav_3@2x.png">
-      </navigator>
-      <navigator url="">
-        <image src="/static/uploads/icon_index_nav_4@2x.png">
-      </navigator>
+     
     </view>
     <view class="floors">
       <view class="floor">
@@ -73,45 +59,50 @@
       </view>
        </view>
     </view>
-     <view class="floors">
-      <view class="floor">
-        <view class="title">
-          <image src="/static/uploads/pic_floor01_title.png">
-        </view>
-        <view class="items">
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_1@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_2@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_3@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_4@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_5@2x.png">
-          </navigator>
-        </view>
       </view>
-      </view>
-       </view>
 </template>
 <script>
 import search from '@/components/search'
 export default {
   data() {
     return {
-      title: "NIHAO"
+    pageHeight:'auto',
+    title: "NIHAO",
+    swiperData:[],
+    navsData:[],
+    floorData:[]
     };
   },
   components:{
     search
   },
-  onload() {},
-  methods: {}
+  onload() {
+    this.querySwiperData()
+    this.queryNavsData()
+    this.floorData()
+  },
+  methods: {
+    handleWindowHeight(data){
+      this.pageHeight=data.height +'px';
+      console.log('handleWindowHeight')
+    },
+    querySwiperData(){
+      wx.request({
+        url:'http://api-ugo-dev.iteima.net/api/public/v1/home/swiperdata',
+        success(res){
+          this.swiperData=res.data.message
+        }
+      })
+    },
+    queryNavsData(){
+      wx.request({
+        url:'',
+        success:(res)=>{
+          this.navsData=res.data.message
+        }
+      })
+    }
+  }
 };
 </script>
 <style lang="less">
