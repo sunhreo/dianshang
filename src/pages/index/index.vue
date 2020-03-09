@@ -7,57 +7,24 @@
       </swiper-item>
     </swiper>
     <view class="navs">
-      <navigator url="">
-        <image src="/static/uploads/icon_index_nav_1@2x.png"></image>
-      </navigator>
+      <navigator url="" :key="index" v-for="(item,index) in navsData">
+        <image :src="item.image_src  "></image>
+       </navigator>
      
     </view>
     <view class="floors">
-      <view class="floor">
+      <view class="floor" :key="index" v-for="(item,index)in floorData">
         <view class="title">
-          <image src="/static/uploads/pic_floor01_title.png">
+          <image :src="floor_title.image_src">
         </view>
         <view class="items">
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_1@2x.png">
+          <navigator url="" :key="i" v-for="(img,i) in item.product_list">
+            <image src="img.image_src"/>
           </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_2@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_3@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_4@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_5@2x.png">
-          </navigator>
+        
         </view>
       </view>
    
-      <view class="floor">
-        <view class="title">
-          <image src="/static/uploads/pic_floor01_title.png">
-        </view>
-        <view class="items">
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_1@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_2@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_3@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_4@2x.png">
-          </navigator>
-          <navigator url="">
-            <image src="/static/uploads/pic_floor01_5@2x.png">
-          </navigator>
-      </view>
-       </view>
     </view>
       </view>
 </template>
@@ -96,7 +63,15 @@ export default {
     },
     queryNavsData(){
       wx.request({
-        url:'',
+        url:'http://api-ugo-dev.iteima.net/api/public/v1/home/catitems',
+        success:(res)=>{
+          this.navsData=res.data.message
+        }
+      })
+    },
+    queryFloorData(){
+      wx.request({
+        url:'http://api-ugo-dev.iteima.net/api/public/v1/home/FloorData',
         success:(res)=>{
           this.navsData=res.data.message
         }
